@@ -13,5 +13,9 @@ npm i @reduxjs/toolkit react-redux react-router-dom appwrite @tinymce/tinymce-re
 8. writing some code in App.jsx regarding conditional rendering and dispatch  
 9. Creating Components - Footer,Header,LogoutButton,Logo,Input  
 10. Creating Components - Select,PostCard  
+<<<<<<< HEAD
 11. Creating Components - Login,Signup,AuthLayout  
 12. 
+=======
+done till video of react hook form time - 18:47
+>>>>>>> a72e138d3bc89b732824d9dd0c911e01715838a9
