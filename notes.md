@@ -17,5 +17,18 @@ npm i @reduxjs/toolkit react-redux react-router-dom appwrite @tinymce/tinymce-re
 12. Adding form and slug values : Creating Components - RTE,Post-Form/PostForm
 13. Building pages  
 14. Debugging and CORS were added here in appwrite website by adding platform  
+15. Deployment -  
+
+- vercel :  
+import git repo  
+add env variables  
+deploy  
+
+- netlify :  
+import git repo  
+add env variables  
+deploy  
 
 Note - login requires some optimization  
+Also note that after deployment, login and signup is not working may be there is some issue with appwrite_url or appwrite_endpoint  
+debugging is required  
