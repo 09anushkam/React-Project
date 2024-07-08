@@ -18,5 +18,4 @@ npm i @reduxjs/toolkit react-redux react-router-dom appwrite @tinymce/tinymce-re
 13. Building pages  
 14. Debugging and CORS were added here in appwrite website by adding platform  
 
-
 Note - login requires some optimization  

@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import appwriteService from "../appwrite/configuration";
 import {Container, PostCard} from '../Components'
+import { useSelector } from 'react-redux';
 
 function Home() {
     const [posts, setPosts] = useState([]);
+    const authStatus=useSelector((state)=>state.auth.status); 
 
     useEffect(() => {
         appwriteService
@@ -15,30 +17,23 @@ function Home() {
         });
     }, []);
   
-    if (posts.length > 0) {
+    // if (posts.length > 0) {
+    if(authStatus===true && posts.length>0){
         return (
-        <div className='w-full py-8'>
-            <Container>
-                <div className='flex flex-wrap'>
-                    {posts.map((post) => (
-                        <div key={post.$id} className='p-2 w-1/4'>
-                            <PostCard {...post} />
-                        </div>
-                    ))}
-                </div>
-            </Container>
-        </div>
-    );
-    }
-    else if(!posts.some((post)=>post.trim==="")){
-        return (
-        <div className='my-10 text-2xl font-bold'>
-          <h1>No posts found</h1>
-        </div>
+            <div className='w-full py-8'>
+                <Container>
+                    <div className='flex flex-wrap'>
+                        {posts.map((post) => (
+                            <div key={post.$id} className='p-2 w-1/4'>
+                                <PostCard {...post} />
+                            </div>
+                        ))}
+                    </div>
+                </Container>
+            </div>
         );
     }
-    
-    else{
+    else if(authStatus===false){
         return (
             <div className="w-full py-8 mt-4 text-center">
                 <Container>
@@ -52,6 +47,16 @@ function Home() {
                 </Container>
             </div>
         );
+    }
+    else if(!posts.some((post)=>post.trim==="")){
+        return (
+        <div className='my-10 text-2xl font-bold'>
+          <h1>No posts found</h1>
+        </div>
+        );
+    }
+    else{
+        return null;
     }
 }
 
