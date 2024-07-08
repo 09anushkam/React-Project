@@ -5,35 +5,34 @@ import { useSelector } from 'react-redux'
 
 const Header = () => {
 
-  const authStatus=useSelector((state)=>state.auth.status);
-
+  const authStatus=useSelector((state)=>state.auth.status); 
   const navigate=useNavigate();
 
   const navItems=[
-    {
-      name: 'Home',
-      slug: "/",
-      active: true
-    }, 
-    {
-      name: "Login",
-      slug: "/login",
-      active: !authStatus,
+  {
+    name: 'Home',
+    slug: "/",
+    active: true
+  }, 
+  {
+    name: "Login",
+    slug: "/login",
+    active: !authStatus, //true
   },
   {
       name: "Signup",
       slug: "/signup",
-      active: !authStatus,
+      active: !authStatus, //true
   },
   {
       name: "All Posts",
       slug: "/all-posts",
-      active: authStatus,
+      active: authStatus, //false
   },
   {
       name: "Add Post",
       slug: "/add-post",
-      active: authStatus,
+      active: authStatus, //false
   },
   ];
 
@@ -43,7 +42,7 @@ const Header = () => {
         <nav className='flex'>
           <div className='mr-4 '>
             <Link to='/'>
-              <Logo width='70px'/>
+              <Logo width='50px'/>
 
             </Link>
           </div>

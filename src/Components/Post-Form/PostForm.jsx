@@ -5,9 +5,7 @@ import appwriteService from '../../appwrite/configuration'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-
-
-function PostForm() {
+export default function PostForm({post}) {
 
     const {register,handleSubmit,watch,setValue,control,getValues} = useForm({
         defaultValues:{
@@ -19,7 +17,7 @@ function PostForm() {
     });
 
     const navigate=useNavigate();
-    const userData=useSelector(state=>state.user.userData);
+    const userData=useSelector(state=>state.auth.userData); //error
 
     const submit=async(data)=>{
         if(post){
@@ -120,5 +118,3 @@ function PostForm() {
         </form>
   )
 }
-
-export default PostForm

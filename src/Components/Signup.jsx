@@ -27,7 +27,7 @@ const Signup = () => {
   }
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center w-full my-8">
       <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
         <div className="mb-2 flex justify-center">
           <span className="inline-block w-full max-w-[100px]">
@@ -59,13 +59,13 @@ const Signup = () => {
             label="Email: " 
             placeholder="Enter your email" 
             type="email" 
-            {...register("email"),{
+            {...register("email",{
               required:true,
               validate:{
                 // the thing that is written below is regex
                 matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) || "Email address must be a valid address",
               }
-            }} />
+            })} />
             <Input
             label="Password: "
             type="password"

@@ -18,7 +18,7 @@ export class Service{
         this
         .client
         .setEndpoint(config.appwriteUrl)
-        .setEndpoint(config.appwriteProjectId);
+        .setProject(config.appwriteProjectId);
 
         this.databases=new Databases(this.client);
         this.bucket=new Storage(this.client);
@@ -94,14 +94,13 @@ export class Service{
     }
 
     // get post async method needs indexes which is status
+    // error
     async getPosts(queries=[Query.equal("status","active")]){
         try {
             return await this.databases.listDocuments(
                 config.appwriteDatabaseId,
                 config.appwriteCollectionId,
                 queries,
-                100,
-                0,
             );
         } catch (error) {
             console.log("Appwrite service :: getPosts :: error",error);

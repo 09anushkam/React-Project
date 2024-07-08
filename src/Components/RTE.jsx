@@ -5,7 +5,7 @@ import { Controller } from 'react-hook-form';
 
 export default function RTE({name,control,label,defaultValue=""}) {
   return (
-    <div className='w-full'>
+    <div className='w-full my-5'>
         {label && <label className='inline-block mb-1 pl-1'>
            {label} 
         </label>} 
@@ -15,6 +15,7 @@ export default function RTE({name,control,label,defaultValue=""}) {
     control={control}
     render={({field:{onChange}})=>(
         <Editor
+        apiKey='gahidzllq3bzd07uippkggmq77saq5idhqlo1njp3b97c5it'
         initialValue={defaultValue}
         init={{
             initialValue: defaultValue,

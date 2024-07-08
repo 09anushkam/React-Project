@@ -20,20 +20,19 @@ function Login() {
     const login=async(data)=>{
       setError("");
       try {
-        const session=await authService.login(data);
-        if(session){
-          const userData=await authService.getCurrentUser();
-        }else{
-          if(userData) dispatch(storeLogin(userData)); // store login is coming from reducer
-          navigate("/");
+            const session = await authService.login(data);
+            if (session) {
+                const userData = await authService.getCurrentUser();
+                if(userData) dispatch(authLogin(userData));
+                navigate("/")
+            }
+        } catch (error) {
+            setError(error.message);
         }
-      } catch (error) {
-        setError(error.message);
-      }
     }
     
   return (
-    <div className='flex items-center justify-center w-full'>
+    <div className='flex items-center justify-center w-full my-8'>
       <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
         <div className="mb-2 flex justify-center">
           <span className="inline-block w-full max-w-[100px]">
@@ -60,21 +59,21 @@ function Login() {
             label="Email: " 
             placeholder="Enter your email" 
             type="email" 
-            {...register("email"),{
+            {...register("email",{
               required:true,
               validate:{
                 // the thing that is written below is regex
                 matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) || "Email address must be a valid address",
               }
-            }} />
+            })} />
 
             <Input
             label="Password: "
             type="password"
             placeholder="Enter your password"
-            {...register("password"),{
-              required:true,
-            }} />
+            {...register("password", {
+              required: "Password is required",
+            })} />
 
             <Button type='submit' className='w-full'> Sign in </Button>
           </div>

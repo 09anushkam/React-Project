@@ -16,9 +16,14 @@ export class AuthService {
         this
         .client
         .setEndpoint(config.appwriteUrl)
-        .setEndpoint(config.appwriteProjectId);
+        .setProject(config.appwriteProjectId);
         
         this.account=new Account(this.client);
+
+        // Bind methods to ensure correct context
+        this.login = this.login.bind(this);
+        this.getCurrentUser = this.getCurrentUser.bind(this);
+        this.logout = this.logout.bind(this);
     }
 
     // createAccount async method
@@ -38,22 +43,40 @@ export class AuthService {
 
     // login async method
     async login({email,password}){
+        if (!email || !password) {
+            throw new Error("Email and password are required");
+        }
+
         try {
-            return await this.account.createEmailPasswordSession(email,password);
-        } catch (error) {
+            // console.log("Appwrite service :: login :: Attempting to login with email:", email);
+            const session = await this.account.createEmailPasswordSession(email, password); //some error
+            // console.log("Appwrite service :: login :: Successfully logged in", session);
+            return session;
+        } 
+        catch (error) {
+            console.error("Appwrite service :: login :: error", error);
             throw error;
         }
     }
 
     // getUser async method - to check if logged in
+    // some error
     async getCurrentUser(){
         try {
-            return await this.account.get();
-        } catch (error) {
-            // throw error;
-            console.log("Appwrite service :: getCurrentUser :: error",error);
+            // Check if the user is authenticated
+            const session = await this.account.getSession("current"); //
+            if (!session) {
+                throw new Error("No active session found. User is not authenticated.");
+            }
+
+            const user = await this.account.get();
+            // console.log("Appwrite service :: getCurrentUser :: user", user);
+            return user;
+        } 
+        catch (error) {
+            console.log("Appwrite service :: getCurrentUser :: error", error);
+            throw error;
         }
-        return null;
     }
 
     // logout async method
