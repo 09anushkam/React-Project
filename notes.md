@@ -17,7 +17,6 @@ npm i @reduxjs/toolkit react-redux react-router-dom appwrite @tinymce/tinymce-re
 12. Adding form and slug values : Creating Components - RTE,Post-Form/PostForm
 13. Building pages  
 14. Debugging and CORS were added here in appwrite website by adding platform  
-15. Deploying react website -  
 
 
 Note - login requires some optimization  
