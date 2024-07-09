@@ -132,6 +132,7 @@ export class Service{
             return true;
         } catch (error) {
             console.log("Appwrite service :: deleteFile :: error",error);
+            return false;
         }
     }
 
