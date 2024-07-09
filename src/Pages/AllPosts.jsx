@@ -5,15 +5,33 @@ import {Container,PostCard} from "../Components";
 function AllPosts() {
 
     const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
       appwriteService.getPosts([])
       .then((posts) => {
-      if (posts) {
-        setPosts(posts.documents);
-      }
-    });
+        if (posts) {
+          setPosts(posts.documents);
+        }
+      })
+      .finally(()=>{
+        setLoading(false);
+      });
     }, []);
+
+    if (loading) {
+        return (
+            <div className="w-full py-8 mt-4 text-center">
+                <Container>
+                    <div className="flex flex-wrap">
+                        <div className="p-2 w-full">
+                            <h1 className="text-2xl font-bold">Loading...</h1>
+                        </div>
+                    </div>
+                </Container>
+            </div>
+        );
+    }
 
     if(posts.length > 0){
       return (
