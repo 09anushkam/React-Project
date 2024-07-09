@@ -30,5 +30,4 @@ add env variables
 deploy  
 
 Note - login requires some optimization  
-Also note that after deployment, login and signup is not working may be there is some issue with appwrite_url or appwrite_endpoint  
-debugging is required  
+Also note that CORS error can occur after deployment so add ur deployed app url on appwrite platform instead of localhost
